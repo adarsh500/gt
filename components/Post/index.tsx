@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import styles from './post.module.css';
+import styles from './Post.module.css';
 
 const Post = (props: {
   urls: any;
@@ -25,17 +25,19 @@ const Post = (props: {
   } = props;
   return (
     <div className={styles.postContainer}>
-      <Image
-        className={styles.image}
-        placeholder="blur"
-        blurDataURL={blur_hash}
-        src={urls.regular}
-        alt={alt_description}
-        fill
-        objectFit="cover"
-        loading="lazy"
-      />
-      <p>{description}</p>
+      <div className={styles.userContainer}></div>
+      <div className={styles.imageContainer}>
+        <Image
+          className={styles.image}
+          placeholder="blur"
+          blurDataURL={blur_hash}
+          src={urls.regular}
+          alt={alt_description}
+          fill
+          loading="lazy"
+        />
+      </div>
+      <p className={styles.caption}>{description}</p>
     </div>
   );
 };

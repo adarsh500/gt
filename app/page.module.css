@@ -6,3 +6,7 @@
   min-height: 100vh;
   background-color: white;
 }
+
+.postsContainer {
+  width: 500px;
+}
