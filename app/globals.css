@@ -33,3 +33,7 @@ a {
 b {
   font-weight: 600;
 }
+
+svg {
+  vertical-align: middle;
+}

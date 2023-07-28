@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import styles from './Post.module.css';
 import Heart from '@/assets/icons/Heart';
+import Link from 'next/link';
+import Share from '@/assets/icons/Share';
 
 const Post = (props: {
   urls: any;
@@ -24,10 +26,11 @@ const Post = (props: {
     liked_by_user,
     user,
   } = props;
+  // console.log('lin', links);
   return (
     <div className={styles.postContainer}>
       <div className={styles.profileContainer}>
-        <div className={styles.profileImageContainer}>
+        <Link href={user.links.html} className={styles.profileImageContainer}>
           <Image
             src={user.profile_image.medium}
             fill
@@ -35,9 +38,11 @@ const Post = (props: {
             className={styles.profileImage}
             alt={user.name}
           />
-        </div>
+        </Link>
         <div className={styles.profileInfo}>
-          <b className={styles.profileUsername}>{user.username}</b>
+          <Link href={user.links.html} className={styles.profileUsername}>
+            {user.username}
+          </Link>
         </div>
       </div>
       <div className={styles.imageContainer}>
@@ -54,6 +59,7 @@ const Post = (props: {
       <div className={styles.statistics}>
         <div className={styles.actionIcons}>
           <Heart />
+          <Share className={styles.share} />
         </div>
         <div className={styles.statisticsCount}>
           <span className={styles.statisticsItemNumber}>{likes}</span>{' '}
