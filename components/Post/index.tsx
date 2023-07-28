@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import styles from './Post.module.css';
+import Heart from '@/assets/icons/Heart';
 
 const Post = (props: {
   urls: any;
@@ -25,7 +26,20 @@ const Post = (props: {
   } = props;
   return (
     <div className={styles.postContainer}>
-      <div className={styles.userContainer}></div>
+      <div className={styles.profileContainer}>
+        <div className={styles.profileImageContainer}>
+          <Image
+            src={user.profile_image.medium}
+            fill
+            loading="lazy"
+            className={styles.profileImage}
+            alt={user.name}
+          />
+        </div>
+        <div className={styles.profileInfo}>
+          <b className={styles.profileUsername}>{user.username}</b>
+        </div>
+      </div>
       <div className={styles.imageContainer}>
         <Image
           className={styles.image}
@@ -37,7 +51,22 @@ const Post = (props: {
           loading="lazy"
         />
       </div>
-      <p className={styles.caption}>{description}</p>
+      <div className={styles.statistics}>
+        <div className={styles.actionIcons}>
+          <Heart />
+        </div>
+        <div className={styles.statisticsCount}>
+          <span className={styles.statisticsItemNumber}>{likes}</span>{' '}
+          <span className={styles.statisticsItemLabel}>Likes</span>
+        </div>
+      </div>
+      <div className={styles.captionContainer}>
+        {description && (
+          <p className={styles.caption}>
+            <b>{user.username}</b> {description}
+          </p>
+        )}
+      </div>
     </div>
   );
 };

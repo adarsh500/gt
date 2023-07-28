@@ -1,6 +1,19 @@
 .postContainer {
   color: #000;
   margin: 4rem 0;
+
+  .statistics {
+    margin-top: 0.5rem;
+    font-weight: 600;
+
+    .actionIcons {
+      margin-top: 0.5rem;
+    }
+
+    .statisticsCount {
+      margin-top: 0.5rem;
+    }
+  }
 }
 
 .imageContainer {
@@ -14,6 +27,41 @@
   object-fit: cover;
 }
 
-.caption {
-  /* margin-top: 95rem; */
+.captionContainer {
+  display: flex;
+
+  .caption {
+    margin-top: 0.5rem;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+
+    .caption::after {
+      content: 'gg';
+    }
+  }
+}
+
+.profileContainer {
+  padding: 0.5rem 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  .profileImageContainer {
+    position: relative;
+    width: 40px;
+    height: 40px;
+
+    .profileImage {
+      border-radius: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .profileInfo {
+    margin-left: 0.75rem;
+  }
 }
