@@ -1,0 +1,7 @@
+.postContainer {
+  width: 500px;
+  height: 500px;
+  position: relative;
+  overflow: hidden;
+  margin: 4rem 0;
+}
