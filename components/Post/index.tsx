@@ -57,7 +57,9 @@ const Post = (props: {
         </div>
         <div className={styles.statisticsCount}>
           <span className={styles.statisticsItemNumber}>{likes}</span>{' '}
-          <span className={styles.statisticsItemLabel}>Likes</span>
+          <span className={styles.statisticsItemLabel}>
+            {likes > 1 ? 'likes' : 'like'}
+          </span>
         </div>
       </div>
       <div className={styles.captionContainer}>

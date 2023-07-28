@@ -2,10 +2,19 @@ import styles from './page.module.css';
 import data from '../data';
 import Post from '@/components/Post';
 
+/**
+TODO
+1. cache api response
+2. add infinite scroll
+3. add search
+4. loaidng, error states
+5. responsive
+6. hyperlinks
+ */
+
 export default function Home() {
   return (
     <main className={styles.main}>
-      <h1>Images</h1>
       <div className={styles.postsContainer}>
         {data.map((post) => {
           const {
@@ -21,7 +30,17 @@ export default function Home() {
           } = post;
           return (
             <div key={post.id} className={styles.post}>
-              <Post {...post} />
+              <Post
+                urls={urls}
+                description={description}
+                alt_description={alt_description}
+                blur_hash={blur_hash}
+                id={id}
+                links={links}
+                likes={likes}
+                liked_by_user={liked_by_user}
+                user={user}
+              />
             </div>
           );
         })}
