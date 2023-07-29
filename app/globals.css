@@ -3,6 +3,8 @@
   padding: 0;
   margin: 0;
   scroll-behavior: smooth;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
 }
 
 html,
@@ -37,4 +39,26 @@ b {
 
 svg {
   vertical-align: middle;
+}
+
+:root {
+  --border-radius-large: 8px;
+  --border-radius-medium: 6px;
+  --border-light: 1px solid #eee;
+  --border-dark: 1px solid #333;
+}
+
+@keyframes blur {
+  0% {
+    filter: blur(10px);
+    -moz-filter: blur(10px);
+    -o-filter: blur(10px);
+    -ms-filter: blur(10px);
+  }
+  100% {
+    filter: blur(0px);
+    -moz-filter: blur(0px);
+    -o-filter: blur(0px);
+    -ms-filter: blur(0px);
+  }
 }

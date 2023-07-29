@@ -27,7 +27,6 @@ const Profile = (props: any) => {
     portfolio_url,
     profile_image,
     social,
-    photos,
     badge,
     tags,
     followers_count,

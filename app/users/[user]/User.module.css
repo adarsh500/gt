@@ -10,7 +10,7 @@
 }
 
 .main {
-  width: 1200px;
+  width: 1000px;
 
   .profileContainer {
     padding: 3rem 0;
@@ -22,8 +22,8 @@
       width: 100%;
       position: relative;
       overflow: hidden;
-      height: 140px;
-      width: 140px;
+      height: 150px;
+      width: 150px;
       border-radius: 100%;
       border: 1px solid #eee;
 
@@ -82,7 +82,7 @@
 
   .photos {
     border-top: 1px solid #eee;
-    margin-top: 2rem;
+    padding-top: 4rem;
     width: 100%;
   }
 }
