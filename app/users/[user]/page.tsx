@@ -2,6 +2,9 @@ import React from 'react';
 import Image from 'next/image';
 import styles from './User.module.css';
 import { data } from '@/user';
+import millify from 'millify';
+import Location from '@/assets/icons/Location';
+import ChevronDown from '@/assets/icons/ChevronDown';
 
 const Profile = (props: any) => {
   const { params } = props;
@@ -38,12 +41,34 @@ const Profile = (props: any) => {
           />
         </div>
         <div className={styles.profileInfo}>
-          <p>
+          <b className={styles.name}>
             {first_name} {last_name ? last_name : ''}
-          </p>
-          <p>@{username}</p>
-          <p>{location}</p>
-          <p>{bio}</p>
+          </b>
+          <p className={styles.bio}>{bio}</p>
+          <div className={styles.statistics}>
+            <p>
+              <b>{millify(followers_count)}</b>{' '}
+              {followers_count > 1 ? 'followers' : 'follower'}
+            </p>
+            <p>
+              <b>{millify(downloads)}</b>{' '}
+              {downloads > 1 ? 'downloads' : 'download'}
+            </p>
+
+            <p>
+              <b>{millify(following_count)}</b> following
+            </p>
+          </div>
+          <div className={styles.meta}>
+            <p className={styles.metaInfo}>
+              <Location className={styles.icon} />
+              {location}
+            </p>
+            <p>
+              <ChevronDown className={styles.icon} height={10} width={10} />
+              Socials
+            </p>
+          </div>
         </div>
       </div>
     </main>
@@ -51,3 +76,8 @@ const Profile = (props: any) => {
 };
 
 export default Profile;
+
+export const metadata = {
+  title: `Profile`,
+  description: 'Profile',
+};

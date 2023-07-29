@@ -4,6 +4,8 @@ import Heart from '@/assets/icons/Heart';
 import Link from 'next/link';
 import Share from '@/assets/icons/Share';
 import { memo } from 'react';
+import millify from 'millify';
+import HoverCard from '../HoverCard';
 
 // TODO
 // 1. add social media links
@@ -52,9 +54,15 @@ const Post = (props: {
           />
         </Link>
         <div className={styles.profileInfo}>
-          <Link href={profileLink} className={styles.username}>
-            {user.username}
-          </Link>
+          <HoverCard
+            trigger={
+              <Link href={profileLink} className={styles.username}>
+                {user.username}
+              </Link>
+            }
+          >
+            <h1>hello there</h1>
+          </HoverCard>
         </div>
       </div>
       <div className={styles.imageContainer}>
@@ -74,7 +82,7 @@ const Post = (props: {
           <Share className={styles.share} />
         </div>
         <div className={styles.statisticsCount}>
-          <span className={styles.statisticsItemNumber}>{likes}</span>{' '}
+          <span className={styles.statisticsItemNumber}>{millify(likes)}</span>{' '}
           <span className={styles.statisticsItemLabel}>
             {likes > 1 ? 'likes' : 'like'}
           </span>
