@@ -1,0 +1,19 @@
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 10px;
+}
+
+.imageContainer {
+  position: relative;
+  overflow: hidden;
+  width: calc(calc(100% - 30px) / 3);
+  aspect-ratio: 1;
+  /* border-radius: 4px; */
+  /* border: 1px solid #eee; */
+}
+
+.image {
+  object-fit: cover;
+}

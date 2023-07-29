@@ -4,12 +4,15 @@
   justify-content: space-between;
   align-items: center;
   min-height: 100vh;
-  padding: 5rem;
+  padding: 2rem 5rem;
   background-color: white;
   color: black;
 
   .profileContainer {
+    /* padding: 3rem 0 0 0; */
+    padding: 3rem 0;
     display: flex;
+    border-bottom: 1px solid #eee;
     justify-content: space-between;
     align-items: flex-start;
 
@@ -52,7 +55,6 @@
         }
 
         .socials {
-          
           display: flex;
           flex-direction: column;
           justify-content: flex-start;
@@ -74,6 +76,11 @@
         gap: 1rem;
       }
     }
+  }
+
+  .photos {
+    margin-top: 2rem;
+    width: 100%;
   }
 }
 

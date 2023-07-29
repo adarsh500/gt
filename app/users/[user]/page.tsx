@@ -4,10 +4,14 @@ import styles from './User.module.css';
 import { data } from '@/user';
 import millify from 'millify';
 import Location from '@/assets/icons/Location';
-import ChevronDown from '@/assets/icons/ChevronDown';
-import HoverCard from '@/components/HoverCard';
-import Dropdown from '@/components/Dropdown';
 import Social from '@/components/Social';
+import Gallery from '@/components/Gallery';
+import { userPhotos } from '@/photos';
+
+//todo
+//1. add hover state to location and socials
+//2. add verified badge
+//3. add tags
 
 const Profile = (props: any) => {
   const { params } = props;
@@ -74,6 +78,9 @@ const Profile = (props: any) => {
             />
           </div>
         </div>
+      </div>
+      <div className={styles.photos}>
+        <Gallery photos={userPhotos} />
       </div>
     </main>
   );
