@@ -54,14 +54,13 @@ const Profile = (props: any) => {
           <p className={styles.bio}>{bio}</p>
           <div className={styles.statistics}>
             <p>
-              <b>{millify(followers_count)}</b>{' '}
-              {followers_count > 1 ? 'followers' : 'follower'}
-            </p>
-            <p>
               <b>{millify(downloads)}</b>{' '}
               {downloads > 1 ? 'downloads' : 'download'}
             </p>
-
+            <p>
+              <b>{millify(followers_count)}</b>{' '}
+              {followers_count > 1 ? 'followers' : 'follower'}
+            </p>
             <p>
               <b>{millify(following_count)}</b> following
             </p>

@@ -1,4 +1,4 @@
-.main {
+.layout {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -7,13 +7,15 @@
   padding: 2rem 5rem;
   background-color: white;
   color: black;
+}
+
+.main {
+  width: 1200px;
 
   .profileContainer {
-    /* padding: 3rem 0 0 0; */
     padding: 3rem 0;
     display: flex;
-    border-bottom: 1px solid #eee;
-    justify-content: space-between;
+    justify-content: center;
     align-items: flex-start;
 
     .profileImageContainer {
@@ -79,6 +81,7 @@
   }
 
   .photos {
+    border-top: 1px solid #eee;
     margin-top: 2rem;
     width: 100%;
   }
