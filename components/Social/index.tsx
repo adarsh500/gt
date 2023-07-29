@@ -1,46 +1,61 @@
-'use client';
-import Dropdown from '../Dropdown';
 import ChevronDown from '@/assets/icons/ChevronDown';
 import styles from './Social.module.css';
+import Popover from '../Popover';
 
-const Social = (props: any) => {
-  const { instagram_username, twitter_username, portfolio_url } = props;
+type SocialProps = {
+  instagram?: string;
+  twitter?: string;
+  portfolio?: string;
+};
+
+//TODO
+//1. add instagram, twitter, portfolio icons
+
+const Social = (props: SocialProps) => {
+  const { instagram, twitter, portfolio } = props;
 
   return (
-    <Dropdown
-      trigger={
-        <p>
-          <ChevronDown className={styles.icon} height={10} width={10} />
-          Socials
-        </p>
+    <Popover
+      content={
+        <div className={styles.social}>
+          {!!instagram && (
+            <a
+              href={`https://instagram.com/${instagram}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.link}
+            >
+              Instagram
+            </a>
+          )}
+          {!!twitter && (
+            <a
+              href={`https://twitter.com/${twitter}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.link}
+            >
+              Twitter
+            </a>
+          )}
+          {!!portfolio && (
+            <a
+              href={portfolio}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.link}
+            >
+              Portfolio
+            </a>
+          )}
+        </div>
       }
     >
-      <div className={styles.socials}>
-        {instagram_username && (
-          <a
-            href={`https://instagram.com/${instagram_username}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Instagram
-          </a>
-        )}
-        {twitter_username && (
-          <a
-            href={`https://twitter.com/${twitter_username}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Twitter
-          </a>
-        )}
-        {portfolio_url && (
-          <a href={portfolio_url} target="_blank" rel="noopener noreferrer">
-            Portfolio
-          </a>
-        )}
-      </div>
-    </Dropdown>
+      <p>
+        <ChevronDown className={styles.icon} height={20} width={20} />
+        Socials{' '}
+      </p>
+    </Popover>
   );
 };
 export default Social;

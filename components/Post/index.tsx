@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import styles from './Post.module.css';
 import Heart from '@/assets/icons/Heart';
@@ -5,7 +7,7 @@ import Link from 'next/link';
 import Share from '@/assets/icons/Share';
 import { memo } from 'react';
 import millify from 'millify';
-import HoverCard from '../HoverCard';
+import Popover from '../Popover';
 
 // TODO
 // 1. add social media links
@@ -54,15 +56,11 @@ const Post = (props: {
           />
         </Link>
         <div className={styles.profileInfo}>
-          <HoverCard
-            trigger={
-              <Link href={profileLink} className={styles.username}>
-                {user.username}
-              </Link>
-            }
-          >
-            <h1>hello there</h1>
-          </HoverCard>
+          <Popover content={<h1>hello there</h1>}>
+            <Link href={profileLink} className={styles.username}>
+              {user.username}
+            </Link>
+          </Popover>
         </div>
       </div>
       <div className={styles.imageContainer}>

@@ -30,7 +30,6 @@ const Profile = (props: any) => {
     following_count,
     downloads,
   } = data;
-  console.log(params);
 
   return (
     <main className={styles.main}>
@@ -68,8 +67,12 @@ const Profile = (props: any) => {
               <Location className={styles.icon} />
               {location}
             </p>
+            <Social
+              instagram={instagram_username}
+              twitter={twitter_username}
+              portfolio={portfolio_url}
+            />
           </div>
-          <Social />
         </div>
       </div>
     </main>
