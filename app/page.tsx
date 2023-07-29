@@ -31,19 +31,20 @@ export default function Home() {
             user,
           } = post;
           return (
-            <div key={post.id} className={styles.post}>
-              <Post
-                urls={urls}
-                description={description}
-                alt_description={alt_description}
-                blur_hash={blur_hash}
-                id={id}
-                links={links}
-                likes={likes}
-                liked_by_user={liked_by_user}
-                user={user}
-              />
-            </div>
+            // <div key={post.id} className={styles.post}>
+            <Post
+              key={id}
+              urls={urls}
+              description={description}
+              alt_description={alt_description}
+              blur_hash={blur_hash}
+              id={id}
+              links={links}
+              likes={likes}
+              liked_by_user={liked_by_user}
+              user={user}
+            />
+            // </div>
           );
         })}
       </div>
