@@ -23,6 +23,7 @@ a {
   html {
     color-scheme: dark;
     color: white;
+    background: #000;
   }
 }
 
@@ -30,6 +31,7 @@ a {
   html {
     color-scheme: light;
     color: black;
+    background: #fff;
   }
 }
 

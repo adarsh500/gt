@@ -7,6 +7,8 @@ import Location from '@/assets/icons/Location';
 import Social from '@/components/Social';
 import Gallery from '@/components/Gallery';
 import { userPhotos } from '@/photos';
+import Verified from '@/assets/icons/Verified';
+import LayoutSwitcher from '@/components/LayoutSwitcher';
 
 //todo
 //1. add hover state to location and socials
@@ -49,7 +51,9 @@ const Profile = (props: any) => {
         <div className={styles.profileInfo}>
           <b className={styles.name}>
             {first_name} {last_name ? last_name : ''}
+            <Verified className={styles.icon} />
           </b>
+
           <p className={styles.bio}>{bio}</p>
           <div className={styles.statistics}>
             <p>
@@ -78,7 +82,7 @@ const Profile = (props: any) => {
         </div>
       </div>
       <div className={styles.photos}>
-        <Gallery photos={userPhotos} />
+        <LayoutSwitcher />
       </div>
     </main>
   );
