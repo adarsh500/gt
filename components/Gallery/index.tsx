@@ -1,9 +1,15 @@
 'use client';
-import styles from './Gallery.module.css';
-import Image from 'next/image';
 import { userPhotos } from '@/photos';
 import { GRID } from '@/utils/constants';
-import Post from '../Post';
+import Image from 'next/image';
+import styles from './Gallery.module.css';
+import Heart from '@/assets/icons/Heart';
+import millify from 'millify';
+import dynamic from 'next/dynamic';
+const PostList = dynamic(() => import('@/components/PostList'), {
+  ssr: false,
+  loading: () => <p>Loading...</p>,
+});
 
 type GalleryProps = {
   layout: 'grid' | 'list';
@@ -26,39 +32,17 @@ const Gallery = (props: GalleryProps) => {
                   fill
                   loading="lazy"
                 />
+                <div className={styles.overlay}>
+                  <Heart className={styles.likes} />
+                  <p>{millify(photo?.likes)}</p>
+                </div>
               </div>
             );
           })}
         </div>
       ) : (
         <div className={styles.list}>
-          {userPhotos.map((post) => {
-            const {
-              urls,
-              description,
-              alt_description,
-              blur_hash,
-              id,
-              links,
-              likes,
-              liked_by_user,
-              user,
-            } = post;
-            return (
-              <Post
-                key={id}
-                urls={urls}
-                description={description}
-                alt_description={alt_description}
-                blur_hash={blur_hash}
-                id={id}
-                links={links}
-                likes={likes}
-                liked_by_user={liked_by_user}
-                user={user}
-              />
-            );
-          })}
+          <PostList posts={userPhotos} className={styles.list} />
         </div>
       )}
     </>

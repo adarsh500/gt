@@ -1,6 +1,7 @@
 import styles from './page.module.css';
 import data from '../data';
 import Post from '@/components/Post';
+import PostList from '@/components/PostList';
 
 /**
 TODO
@@ -17,37 +18,7 @@ TODO
 export default function Home() {
   return (
     <main className={styles.main}>
-      <div className={styles.postsContainer}>
-        {data.map((post) => {
-          const {
-            urls,
-            description,
-            alt_description,
-            blur_hash,
-            id,
-            links,
-            likes,
-            liked_by_user,
-            user,
-          } = post;
-          return (
-            // <div key={post.id} className={styles.post}>
-            <Post
-              key={id}
-              urls={urls}
-              description={description}
-              alt_description={alt_description}
-              blur_hash={blur_hash}
-              id={id}
-              links={links}
-              likes={likes}
-              liked_by_user={liked_by_user}
-              user={user}
-            />
-            // </div>
-          );
-        })}
-      </div>
+      <PostList posts={data} />
     </main>
   );
 }
