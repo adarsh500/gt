@@ -1,24 +1,28 @@
+import React, { useCallback, useState } from 'react';
+import styles from './Dropdown.module.css';
+
 type DropdownProps = {
-  open: boolean;
   trigger: React.ReactNode;
-  menu?: React.ReactNode[];
   children: React.ReactNode;
 };
 
-const Dropdown = ({ open, trigger, menu, children }: DropdownProps) => {
+const Dropdown = (props: DropdownProps) => {
+  const { trigger, children } = props;
+  console.log(props);
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = useCallback(() => {
+    setOpen((prev) => !prev);
+  }, []);
+
   return (
-    <div className="dropdown">
-      {trigger}
-      {open ? (
-        <ul className="menu">
-          {/* {menu.map((menuItem, index) => (
-            <li key={index} className="menu-item">
-              {menuItem}
-            </li>
-          ))} */}
-          {children}
-        </ul>
-      ) : null}
+    <div className={styles.overlay} onClick={handleOpen}>
+      <div className={styles.dropdown}>
+        {React.cloneElement(trigger, {
+          onClick: handleOpen,
+        })}
+        {open ? <div className={styles.menu}>{children}</div> : null}
+      </div>
     </div>
   );
 };

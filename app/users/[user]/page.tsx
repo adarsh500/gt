@@ -7,6 +7,7 @@ import Location from '@/assets/icons/Location';
 import ChevronDown from '@/assets/icons/ChevronDown';
 import HoverCard from '@/components/HoverCard';
 import Dropdown from '@/components/Dropdown';
+import Social from '@/components/Social';
 
 const Profile = (props: any) => {
   const { params } = props;
@@ -68,6 +69,7 @@ const Profile = (props: any) => {
               {location}
             </p>
           </div>
+          <Social />
         </div>
       </div>
     </main>
