@@ -50,6 +50,15 @@
           display: flex;
           gap: 2px;
         }
+
+        .socials {
+          
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          gap: 0.5rem;
+          align-items: center;
+        }
       }
 
       .bio {

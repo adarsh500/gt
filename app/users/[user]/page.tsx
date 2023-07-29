@@ -5,6 +5,8 @@ import { data } from '@/user';
 import millify from 'millify';
 import Location from '@/assets/icons/Location';
 import ChevronDown from '@/assets/icons/ChevronDown';
+import HoverCard from '@/components/HoverCard';
+import Dropdown from '@/components/Dropdown';
 
 const Profile = (props: any) => {
   const { params } = props;
@@ -15,6 +17,7 @@ const Profile = (props: any) => {
     username,
     bio,
     location,
+    instagram_username,
     twitter_username,
     portfolio_url,
     profile_image,
@@ -63,10 +66,6 @@ const Profile = (props: any) => {
             <p className={styles.metaInfo}>
               <Location className={styles.icon} />
               {location}
-            </p>
-            <p>
-              <ChevronDown className={styles.icon} height={10} width={10} />
-              Socials
             </p>
           </div>
         </div>
