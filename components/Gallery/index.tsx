@@ -1,12 +1,10 @@
 'use client';
-import { userPhotos } from '@/photos';
 import { GRID } from '@/utils/constants';
-import Image from 'next/image';
-import styles from './Gallery.module.css';
-import Heart from '@/assets/icons/Heart';
-import millify from 'millify';
 import dynamic from 'next/dynamic';
-import { useCallback } from 'react';
+import { usePathname } from 'next/navigation';
+import { useCallback, useEffect, useState } from 'react';
+import GridImage from '../GridImage';
+import styles from './Gallery.module.css';
 const PostList = dynamic(() => import('@/components/PostList'), {
   ssr: false,
   loading: () => <p>Loading...</p>,
@@ -18,6 +16,42 @@ type GalleryProps = {
 
 const Gallery = (props: GalleryProps) => {
   const { layout } = props;
+  const pathname = usePathname();
+  const username = pathname.split('/')[2] || '';
+  const [page, setPage] = useState(1);
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<unknown>(null);
+
+  const fetchImages = useCallback(async () => {
+    setIsLoading(true);
+
+    try {
+      const response = await fetch(
+        `https://api.unsplash.com/users/${username}/photos?page=${page}&order_by=latest&username=${username}`,
+        {
+          headers: {
+            // Authorization: `Client-ID ${process.env.NEXT_PUBLIC_UNSPLASH}`,
+            Authorization: `Client-ID ${process.env.NEXT_PUBLIC_ACCESS_KEY}`,
+          },
+        }
+      );
+      const results = await response.json();
+      setData((prev) => (!prev ? results : [...prev, ...results]));
+      setIsLoading(false);
+    } catch (err) {
+      setError(err);
+      setIsLoading(false);
+    }
+  }, [page, username]);
+
+  const fetchNextPage = useCallback(() => {
+    setPage((prev) => prev + 1);
+  }, []);
+
+  useEffect(() => {
+    fetchImages();
+  }, [fetchImages, page]);
 
   const openDetailedView = useCallback(() => {}, []);
 
@@ -25,31 +59,29 @@ const Gallery = (props: GalleryProps) => {
     <>
       {layout === GRID ? (
         <div className={styles.gallery}>
-          {userPhotos.map((photo) => {
-            const { urls, alt_description } = photo;
+          {isLoading && <p>Loading...</p>}
+          {!!error && <p>Something went wrong...</p>}
+          {data?.map((photo, index) => {
+            const { urls, alt_description, id } = photo;
             return (
-              <div
-                className={styles.imageContainer}
-                key={photo.id}
-                onClick={openDetailedView}
-              >
-                <Image
-                  className={styles.image}
-                  src={urls.regular}
-                  alt={alt_description}
-                  fill
-                  loading="lazy"
-                />
-                <div className={styles.overlay}>
-                  <Heart className={styles.likes} />
-                  <p>{millify(photo?.likes)}</p>
-                </div>
-              </div>
+              <GridImage
+                key={id}
+                photo={photo}
+                alt_description={alt_description}
+                urls={urls}
+                isLast={index === data.length - 1}
+                openDetailedView={openDetailedView}
+                fetchNextPage={fetchNextPage}
+              />
             );
           })}
         </div>
       ) : (
-        <PostList posts={userPhotos} className={styles.list} />
+        <PostList
+          posts={data}
+          className={styles.list}
+          fetchNextPage={fetchNextPage}
+        />
       )}
     </>
   );

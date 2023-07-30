@@ -1,5 +1,4 @@
 'use client';
-
 import Image from 'next/image';
 import styles from './Post.module.css';
 import Heart from '@/assets/icons/Heart';
@@ -11,7 +10,6 @@ import Popover from '../Popover';
 
 // TODO
 // 1. add social media links
-// 2. add for hire badge
 // 3. add profile hover state
 // 4. add timestamp
 // 5. user liked state
@@ -74,11 +72,11 @@ const Post = (props: {
           />
         </Link>
         <div className={styles.profileInfo}>
-          <Popover content={<h1>hello there</h1>}>
+          {/* <Popover content={<h1>hello there</h1>}> */}
             <Link href={profileLink} className={styles.username}>
               {user.username}
             </Link>
-          </Popover>
+          {/* </Popover> */}
         </div>
       </div>
       <div className={styles.imageContainer}>

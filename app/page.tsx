@@ -22,6 +22,8 @@ export default function Home() {
   const [error, setError] = useState<unknown>(null);
 
   const fetchImages = useCallback(async () => {
+    setIsLoading(true);
+
     try {
       const response = await fetch(
         `https://api.unsplash.com/photos?page=${page}`,
@@ -34,8 +36,10 @@ export default function Home() {
       );
       const results = await response.json();
       setData((prev) => (!prev ? results : [...prev, ...results]));
+      setIsLoading(false);
     } catch (err) {
       setError(err);
+      setIsLoading(false);
     }
   }, [page]);
 
@@ -47,7 +51,6 @@ export default function Home() {
     fetchImages();
   }, [fetchImages, page]);
 
-  console.log('data', data, isLoading, error);
   return (
     <main className={styles.main}>
       {isLoading && <p>Loading...</p>}
