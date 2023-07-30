@@ -1,6 +1,6 @@
 ## Prerequisites
 
-- Obtain your `ACCESS_TOKEN` and `SECRET_KEY` from [Unsplash](https://unsplash.com/documentation#creating-a-developer-account)
+- Obtain your `ACCESS_KEY` and `SECRET_KEY` from [Unsplash](https://unsplash.com/documentation#creating-a-developer-account)
 
 - Create a `.env.local` file in the root directory of the project and add the following:
 

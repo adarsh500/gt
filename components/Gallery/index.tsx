@@ -6,6 +6,7 @@ import styles from './Gallery.module.css';
 import Heart from '@/assets/icons/Heart';
 import millify from 'millify';
 import dynamic from 'next/dynamic';
+import { useCallback } from 'react';
 const PostList = dynamic(() => import('@/components/PostList'), {
   ssr: false,
   loading: () => <p>Loading...</p>,
@@ -17,6 +18,11 @@ type GalleryProps = {
 
 const Gallery = (props: GalleryProps) => {
   const { layout } = props;
+
+    const openDetailedView = useCallback(() => {
+      
+  }, []);
+
   return (
     <>
       {layout === GRID ? (
@@ -24,7 +30,11 @@ const Gallery = (props: GalleryProps) => {
           {userPhotos.map((photo) => {
             const { urls, alt_description } = photo;
             return (
-              <div className={styles.imageContainer} key={photo.id}>
+              <div
+                className={styles.imageContainer}
+                key={photo.id}
+                onClick={openDetailedView}
+              >
                 <Image
                   className={styles.image}
                   src={urls.regular}
@@ -41,9 +51,7 @@ const Gallery = (props: GalleryProps) => {
           })}
         </div>
       ) : (
-        <div className={styles.list}>
-          <PostList posts={userPhotos} className={styles.list} />
-        </div>
+        <PostList posts={userPhotos} className={styles.list} />
       )}
     </>
   );
