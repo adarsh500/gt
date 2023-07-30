@@ -9,6 +9,7 @@ import styles from './Post.module.css';
 import HeartFilled from '@/assets/icons/HeartFilled';
 import Ellipsis from '@/assets/icons/Ellipsis';
 import Popover from '../Popover';
+import Verified from '@/assets/icons/Verified';
 
 // TODO
 // 1. add social media links
@@ -85,9 +86,30 @@ const Post = (props: {
                 {user.username}
               </Link>
             </Popover>
-            <p>for hire</p>
+            {user.for_hire ? <p className={styles.status}>for hire</p> : null}
           </div>
-          <Popover content={<div className={styles.actions}></div>}>
+          <Popover
+            content={
+              <div className={styles.actions}>
+                <Link
+                  href={links.html}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.link}
+                >
+                  Unsplash
+                </Link>
+                <Link
+                  href={urls.raw}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.link}
+                >
+                  View Full
+                </Link>
+              </div>
+            }
+          >
             <Ellipsis className={styles.icon} />
           </Popover>
         </div>

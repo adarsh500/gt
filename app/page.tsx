@@ -1,7 +1,10 @@
 'use client';
+import Error from '@/components/Error';
+import Loader from '@/components/Loader';
 import PostList from '@/components/PostList';
-import styles from './page.module.css';
+import PostSkeleton from '@/components/Skeleton/PostSkeleton';
 import { useCallback, useEffect, useState } from 'react';
+import styles from './page.module.css';
 
 /**
 TODO
@@ -26,7 +29,6 @@ export default function Home() {
         `https://api.unsplash.com/photos?page=${page}`,
         {
           headers: {
-            // Authorization: `Client-ID ${process.env.NEXT_PUBLIC_UNSPLASH}`,
             Authorization: `Client-ID ${process.env.NEXT_PUBLIC_ACCESS_KEY}`,
           },
         }
@@ -50,10 +52,12 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-      {isLoading && <p>Loading...</p>}
-      {!!error && <p>Something went wrong...</p>}
-      <PostList posts={data} fetchNextPage={fetchNextPage} />
+      <div className={styles.container}>
+        {error ? <Error /> : null}
+        {!data.length && isLoading && <PostSkeleton />}
+        <PostList posts={data} fetchNextPage={fetchNextPage} />
+        {data.length && isLoading && <Loader />}
+      </div>
     </main>
   );
 }
-
