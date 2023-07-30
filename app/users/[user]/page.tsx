@@ -3,7 +3,7 @@ import Verified from '@/assets/icons/Verified';
 import LayoutSwitcher from '@/components/LayoutSwitcher';
 import Social from '@/components/Social';
 import millify from 'millify';
-import { Metadata, ResolvingMetadata } from 'next';
+import { Metadata } from 'next';
 import Image from 'next/image';
 import styles from './User.module.css';
 

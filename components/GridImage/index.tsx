@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react';
-import Image from 'next/image';
-import styles from './GridImage.module.css';
 import Heart from '@/assets/icons/Heart';
 import millify from 'millify';
+import Image from 'next/image';
+import { useEffect, useRef } from 'react';
+import useNextBlurhash from 'use-next-blurhash';
+import styles from './GridImage.module.css';
 
 const GridImage = (props) => {
   const {
@@ -12,8 +13,10 @@ const GridImage = (props) => {
     urls,
     alt_description,
     photo,
+    blurHash,
   } = props;
   const cardRef = useRef(null);
+  const [blurDataUrl] = useNextBlurhash(blurHash);
 
   useEffect(() => {
     if (!cardRef?.current) return;
@@ -41,6 +44,8 @@ const GridImage = (props) => {
         alt={alt_description}
         fill
         loading="lazy"
+        blurDataURL={blurDataUrl}
+        placeholder="blur"
       />
       <div className={styles.overlay}>
         <Heart className={styles.likes} />

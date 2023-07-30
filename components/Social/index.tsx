@@ -8,9 +8,6 @@ type SocialProps = {
   portfolio?: string;
 };
 
-//TODO
-//1. add instagram, twitter, portfolio icons
-
 const Social = (props: SocialProps) => {
   const { instagram, twitter, portfolio } = props;
 

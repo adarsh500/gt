@@ -64,7 +64,7 @@ const Gallery = (props: GalleryProps) => {
         <>
           <div className={styles.gallery}>
             {data?.map((photo, index) => {
-              const { urls, alt_description, id } = photo;
+              const { urls, alt_description, id, blur_hash } = photo;
               return (
                 <GridImage
                   key={id}
@@ -74,6 +74,7 @@ const Gallery = (props: GalleryProps) => {
                   isLast={index === data.length - 1}
                   openDetailedView={openDetailedView}
                   fetchNextPage={fetchNextPage}
+                  blurHash={blur_hash}
                 />
               );
             })}

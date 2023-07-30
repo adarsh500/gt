@@ -1,15 +1,15 @@
 'use client';
+import Ellipsis from '@/assets/icons/Ellipsis';
 import Heart from '@/assets/icons/Heart';
+import HeartFilled from '@/assets/icons/HeartFilled';
 import Share from '@/assets/icons/Share';
 import millify from 'millify';
 import Image from 'next/image';
 import Link from 'next/link';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
-import styles from './Post.module.css';
-import HeartFilled from '@/assets/icons/HeartFilled';
-import Ellipsis from '@/assets/icons/Ellipsis';
+import useNextBlurhash from 'use-next-blurhash';
 import Popover from '../Popover';
-import Verified from '@/assets/icons/Verified';
+import styles from './Post.module.css';
 
 // TODO
 // 1. add social media links
@@ -45,6 +45,7 @@ const Post = (props: {
     fetchNextPage,
   } = props;
 
+  const [blurDataUrl] = useNextBlurhash(blur_hash);
   const cardRef = useRef(null);
   const [liked, setLiked] = useState<boolean>(liked_by_user);
 
@@ -118,7 +119,7 @@ const Post = (props: {
         <Image
           className={styles.image}
           placeholder="blur"
-          blurDataURL={blur_hash}
+          blurDataURL={blurDataUrl}
           src={urls.regular}
           alt={alt_description}
           fill
