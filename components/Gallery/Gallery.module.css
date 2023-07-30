@@ -1,9 +1,19 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  overflow: scroll;
+}
+
 .gallery {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
   gap: 16px;
-  margin: 2rem 0;
+  margin: 1rem 0;
 }
 
 @media only screen and (max-width: 1024px) {

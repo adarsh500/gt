@@ -53,7 +53,7 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <div className={styles.container}>
-        {error ? <Error /> : null}
+        {!!error ? <Error /> : null}
         {!data.length && isLoading && <PostSkeleton />}
         <PostList posts={data} fetchNextPage={fetchNextPage} />
         {data.length && isLoading && <Loader />}

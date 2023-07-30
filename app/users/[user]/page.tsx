@@ -84,7 +84,7 @@ const Profile = async (props: any) => {
                 {location}
               </p>
             ) : null}
-            {instagram_username || twitter_username || portfolio_url ? (
+            {!!instagram_username || !!twitter_username || !!portfolio_url ? (
               <Social
                 instagram={instagram_username}
                 twitter={twitter_username}

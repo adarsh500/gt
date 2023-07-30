@@ -81,11 +81,11 @@ const Post = (props: {
         </Link>
         <div className={styles.profile}>
           <div className={styles.profileInfo}>
-            <Popover content={<h1>hello there</h1>}>
-              <Link href={profileLink} className={styles.username}>
-                {user.username}
-              </Link>
-            </Popover>
+            {/* <Popover content={<h1>hello there</h1>}> */}
+            <Link href={profileLink} className={styles.username}>
+              {user.username}
+            </Link>
+            {/* </Popover> */}
             {user.for_hire ? <p className={styles.status}>for hire</p> : null}
           </div>
           <Popover

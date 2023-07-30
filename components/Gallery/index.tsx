@@ -2,12 +2,15 @@
 import { GRID } from '@/utils/constants';
 import dynamic from 'next/dynamic';
 import { usePathname } from 'next/navigation';
+import Error from '../Error';
 import { useCallback, useEffect, useState } from 'react';
 import GridImage from '../GridImage';
 import styles from './Gallery.module.css';
+import Loader from '../Loader';
+import PostSkeleton from '../Skeleton/PostSkeleton';
 const PostList = dynamic(() => import('@/components/PostList'), {
   ssr: false,
-  loading: () => <p>Loading...</p>,
+  loading: () => <Loader />,
 });
 
 type GalleryProps = {
@@ -31,7 +34,6 @@ const Gallery = (props: GalleryProps) => {
         `https://api.unsplash.com/users/${username}/photos?page=${page}&per_page=12&order_by=latest&username=${username}`,
         {
           headers: {
-            // Authorization: `Client-ID ${process.env.NEXT_PUBLIC_UNSPLASH}`,
             Authorization: `Client-ID ${process.env.NEXT_PUBLIC_ACCESS_KEY}`,
           },
         }
@@ -56,7 +58,8 @@ const Gallery = (props: GalleryProps) => {
   const openDetailedView = useCallback(() => {}, []);
 
   return (
-    <>
+    <div className={styles.container}>
+      {!!error ? <Error /> : null}
       {layout === GRID ? (
         <>
           <div className={styles.gallery}>
@@ -75,17 +78,19 @@ const Gallery = (props: GalleryProps) => {
               );
             })}
           </div>
-          {isLoading && <p>Loading...</p>}
-          {!!error && <p>Something went wrong...</p>}
         </>
       ) : (
-        <PostList
-          posts={data}
-          className={styles.list}
-          fetchNextPage={fetchNextPage}
-        />
+        <>
+          {!data.length && isLoading && <PostSkeleton />}
+          <PostList
+            posts={data}
+            className={styles.list}
+            fetchNextPage={fetchNextPage}
+          />
+        </>
       )}
-    </>
+      {data.length && isLoading && <Loader />}
+    </div>
   );
 };
 
