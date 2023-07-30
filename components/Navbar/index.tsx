@@ -31,7 +31,7 @@ const Navbar = () => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.container}>
-        <p>SNAP</p>
+        <Link href="/">SNAP</Link>
         <div className={styles.links}>
           {routes.map(({ name, path }) => (
             <Link
