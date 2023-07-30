@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styles from './Navbar.module.css';
 import { useState, useEffect } from 'react';
+import Dark from '@/assets/icons/Dark';
+import Light from '@/assets/icons/Light';
 
 const routes = [
   {
@@ -47,10 +49,12 @@ const Navbar = () => {
               {name}
             </Link>
           ))}
+          {theme === 'light' ? (
+            <Light onClick={() => setTheme('dark')} className={styles.icon} />
+            ) : (
+            <Dark onClick={() => setTheme('light')} className={styles.icon} />
+          )}
         </div>
-        The current theme is: {theme}
-        <button onClick={() => setTheme('light')}>Light Mode</button>
-        <button onClick={() => setTheme('dark')}>Dark Mode</button>
       </div>
     </nav>
   );

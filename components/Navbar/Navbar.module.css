@@ -45,6 +45,7 @@
   line-height: 24px;
   color: #8b8b8b;
   gap: 2rem;
+  align-items: center;
 }
 
 .active {
@@ -55,4 +56,10 @@
   .active {
     color: var(--text-dark-primary);
   }
+}
+
+.icon {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
 }
