@@ -7,7 +7,6 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import styles from './User.module.css';
 
-
 const fetchUserDetails = async (username: string) => {
   const response = await fetch(`https://api.unsplash.com/users/${username}`, {
     headers: {
@@ -39,8 +38,6 @@ const Profile = async (props: any) => {
     following_count,
     downloads,
   } = data;
-
-  console.log(badge);
 
   return (
     <main className={styles.main}>

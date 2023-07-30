@@ -22,7 +22,6 @@ export const customFetch = (params) => {
 
   return fetch(url, requestOptions)
     .then((response) => {
-      console.log('resg', response)
       if (!response.ok)
         throw { status: response.status, message: "Didn't get OK response" };
       return response.json();

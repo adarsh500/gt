@@ -12,15 +12,10 @@ const routes = [
     name: 'Home',
     path: '/',
   },
-  {
-    name: 'Search',
-    path: '/search',
-  },
 ];
 
 const Navbar = () => {
   const pathname = usePathname();
-  console.log(pathname);
   const [mounted, setMounted] = useState(false);
 
   const { theme, setTheme } = useTheme();
@@ -51,7 +46,7 @@ const Navbar = () => {
           ))}
           {theme === 'light' ? (
             <Light onClick={() => setTheme('dark')} className={styles.icon} />
-            ) : (
+          ) : (
             <Dark onClick={() => setTheme('light')} className={styles.icon} />
           )}
         </div>
