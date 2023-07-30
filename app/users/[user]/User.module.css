@@ -9,6 +9,13 @@
   color: black;
 }
 
+@media only screen and (max-width: 1024px) {
+  .layout {
+    width: 100%;
+    padding: 0;
+  }
+}
+
 .main {
   width: 1000px;
 
@@ -32,6 +39,14 @@
       }
     }
 
+    @media only screen and (max-width: 1024px) {
+      .profileImageContainer {
+        height: 100px;
+        width: 100px;
+        flex-shrink: 0;
+      }
+    }
+
     .profileInfo {
       margin-left: 4rem;
       max-width: 600px;
@@ -47,6 +62,22 @@
         .icon {
           width: 18px;
           height: 18px;
+        }
+
+        @media only screen and (max-width: 1024px) {
+          .icon {
+            width: 16px;
+            height: 16px;
+          }
+        }
+      }
+
+      @media only screen and (max-width: 1024px) {
+        .name {
+          font-size: 18px;
+          line-height: 26px;
+          font-weight: 600;
+          gap: 0.25rem;
         }
       }
 
@@ -79,19 +110,55 @@
         line-height: 24px;
       }
 
+      @media only screen and (max-width: 1024px) {
+        .bio {
+          margin-top: 0.5rem;
+          font-size: 14px;
+          line-height: 20px;
+        }
+      }
+
       .statistics {
         margin-top: 1rem;
         display: flex;
         align-items: center;
         gap: 1rem;
       }
+
+      @media only screen and (max-width: 1024px) {
+        .statistics {
+          margin-top: 1rem;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+      }
+    }
+
+    @media only screen and (max-width: 1024px) {
+      .profileInfo {
+        margin-left: 1rem;
+      }
     }
   }
 
   .photos {
     margin: 1rem;
-    /* border-top: 1px solid #eee; */
-    /* padding-top: 2rem; */
+  }
+
+  @media only screen and (max-width: 1024px) {
+    .photos {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+    }
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .main {
+    width: 100%;
+    padding: 1rem;
   }
 }
 

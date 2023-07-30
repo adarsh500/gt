@@ -1,12 +1,12 @@
 'use client';
-import Image from 'next/image';
-import styles from './Post.module.css';
 import Heart from '@/assets/icons/Heart';
-import Link from 'next/link';
 import Share from '@/assets/icons/Share';
-import { memo, useEffect, useRef } from 'react';
 import millify from 'millify';
-import Popover from '../Popover';
+import Image from 'next/image';
+import Link from 'next/link';
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
+import styles from './Post.module.css';
+import HeartFilled from '@/assets/icons/HeartFilled';
 
 // TODO
 // 1. add social media links
@@ -43,6 +43,11 @@ const Post = (props: {
   } = props;
 
   const cardRef = useRef(null);
+  const [liked, setLiked] = useState<boolean>(liked_by_user);
+
+  const likePhoto = useCallback(() => {
+    setLiked((prev) => !prev);
+  }, []);
 
   useEffect(() => {
     if (!cardRef?.current) return;
@@ -73,13 +78,13 @@ const Post = (props: {
         </Link>
         <div className={styles.profileInfo}>
           {/* <Popover content={<h1>hello there</h1>}> */}
-            <Link href={profileLink} className={styles.username}>
-              {user.username}
-            </Link>
+          <Link href={profileLink} className={styles.username}>
+            {user.username}
+          </Link>
           {/* </Popover> */}
         </div>
       </div>
-      <div className={styles.imageContainer}>
+      <div className={styles.imageContainer} onDoubleClick={likePhoto}>
         <Image
           className={styles.image}
           placeholder="blur"
@@ -92,7 +97,7 @@ const Post = (props: {
       </div>
       <div className={styles.statistics}>
         <div className={styles.actionIcons}>
-          <Heart />
+          <span onClick={likePhoto}>{liked ? <HeartFilled /> : <Heart />}</span>
           <Share className={styles.share} />
         </div>
         <div className={styles.statisticsCount}>

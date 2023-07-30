@@ -6,7 +6,6 @@ import { useCallback, useEffect, useState } from 'react';
 /**
 TODO
 1. cache api response
-2. add infinite scroll
 3. add search
 4. loaidng, error states
 5. responsive

@@ -5,9 +5,14 @@
   aspect-ratio: 1;
   border-radius: 8px;
   transition: all 0.2s ease-in-out;
-  /* border: 1px solid #eee; */
 }
 
+@media only screen and (max-width: 1024px) {
+  .imageContainer {
+    width: calc(calc(100% - 16px) / 3);
+    border-radius: 6px;
+  }
+}
 .overlay {
   position: absolute;
   flex: 1;
@@ -30,8 +35,6 @@
 }
 
 .imageContainer:hover {
-  /* filter: brightness(0.5); */
-
   .overlay {
     opacity: 1;
   }
