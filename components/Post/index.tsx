@@ -5,7 +5,7 @@ import styles from './Post.module.css';
 import Heart from '@/assets/icons/Heart';
 import Link from 'next/link';
 import Share from '@/assets/icons/Share';
-import { memo } from 'react';
+import { memo, useEffect, useRef } from 'react';
 import millify from 'millify';
 import Popover from '../Popover';
 
@@ -28,23 +28,41 @@ const Post = (props: {
   likes: any;
   liked_by_user: any;
   user: any;
+  isLast: boolean;
+  fetchNextPage: () => void;
 }) => {
   const {
     urls,
     description,
     alt_description,
     blur_hash,
-    id,
     links,
     likes,
     liked_by_user,
     user,
+    isLast,
+    fetchNextPage,
   } = props;
+
+  const cardRef = useRef(null);
+
+  useEffect(() => {
+    if (!cardRef?.current) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (isLast && entry.isIntersecting) {
+        fetchNextPage();
+        observer.unobserve(entry.target);
+      }
+    });
+
+    observer.observe(cardRef.current);
+  }, [fetchNextPage, isLast]);
 
   const profileLink = `/users/${user.username}`;
 
   return (
-    <div className={styles.postContainer}>
+    <div className={styles.postContainer} ref={cardRef}>
       <div className={styles.profileContainer}>
         <Link href={profileLink} className={styles.profileImageContainer}>
           <Image

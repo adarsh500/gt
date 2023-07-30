@@ -1,8 +1,7 @@
 'use client';
 import PostList from '@/components/PostList';
 import styles from './page.module.css';
-import { useFetch } from '@/hooks/useFetch';
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 /**
 TODO
@@ -16,25 +15,44 @@ TODO
 8. add vitualisation
  */
 
-// const getPhotos = async () => {
-//   const res = await fetch('https://api.unsplash.com/photos');
-//   return res.json();
-// };
-
 export default function Home() {
-  const [page, setPage] = useState(1)
-  const { data, isLoading, error } = useFetch({
-    url: `https://api.unsplash.com/photos?page=${page}`,
-    method: 'GET',
-    enabled: true,
-  });
+  const [page, setPage] = useState(1);
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<unknown>(null);
 
-  console.log('data', data, isLoading, error)
+  const fetchImages = useCallback(async () => {
+    try {
+      const response = await fetch(
+        `https://api.unsplash.com/photos?page=${page}`,
+        {
+          headers: {
+            // Authorization: `Client-ID ${process.env.NEXT_PUBLIC_UNSPLASH}`,
+            Authorization: `Client-ID ${process.env.NEXT_PUBLIC_ACCESS_KEY}`,
+          },
+        }
+      );
+      const results = await response.json();
+      setData((prev) => (!prev ? results : [...prev, ...results]));
+    } catch (err) {
+      setError(err);
+    }
+  }, [page]);
+
+  const fetchNextPage = useCallback(() => {
+    setPage((prev) => prev + 1);
+  }, []);
+
+  useEffect(() => {
+    fetchImages();
+  }, [fetchImages, page]);
+
+  console.log('data', data, isLoading, error);
   return (
     <main className={styles.main}>
-      {/* <Suspense fallback={<p>Loading...</p>}> */}
-        <PostList posts={data} />
-      {/* </Suspense> */}
+      {isLoading && <p>Loading...</p>}
+      {!!error && <p>Something went wrong...</p>}
+      <PostList posts={data} fetchNextPage={fetchNextPage} />
     </main>
   );
 }
