@@ -11,14 +11,6 @@ import useNextBlurhash from 'use-next-blurhash';
 import Popover from '../Popover';
 import styles from './Post.module.css';
 
-// TODO
-// 1. add social media links
-// 3. add profile hover state
-// 4. add timestamp
-// 5. user liked state
-// 6. share on socials modal
-// 7. PAID SPONSOR https://www.instagram.com/reel/Ct7XOWiRyUQ/?utm_source=ig_embed&ig_rid=2e197fed-490a-4541-afd8-b32e331cb28a
-
 const Post = (props: {
   urls: any;
   description: any;

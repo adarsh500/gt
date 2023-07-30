@@ -2,7 +2,12 @@
 import React, { useCallback, useState } from 'react';
 import styles from './Popover.module.css';
 
-const Popover = ({ content, children }) => {
+type Props = {
+  children: React.ReactNode;
+  content: React.ReactNode;
+};
+
+const Popover = ({ content, children }: Props) => {
   const [isPopoverVisible, setIsPopoverVisible] = useState(false);
 
   const handleMouseEnter = useCallback(() => {
@@ -26,7 +31,9 @@ const Popover = ({ content, children }) => {
     >
       {children}
       {/* {isPopoverVisible && ( */}
-      <div className={isPopoverVisible? styles.popoverContent: styles.hidden}>{content}</div>
+      <div className={isPopoverVisible ? styles.popoverContent : styles.hidden}>
+        {content}
+      </div>
       {/* )} */}
     </div>
   );

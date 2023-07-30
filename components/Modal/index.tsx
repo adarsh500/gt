@@ -33,7 +33,7 @@ const Modal = (props: ModalProps) => {
   }, [isOpen]);
 
   useEffect(() => {
-    const checkIfEscapeClick = (e) => {
+    const checkIfEscapeClick = (e: any) => {
       isOpen && e.keyCode === 27 && onClose && onClose();
     };
     closeOnEscClick && window.addEventListener('keydown', checkIfEscapeClick);
