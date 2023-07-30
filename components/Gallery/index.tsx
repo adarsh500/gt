@@ -28,7 +28,7 @@ const Gallery = (props: GalleryProps) => {
 
     try {
       const response = await fetch(
-        `https://api.unsplash.com/users/${username}/photos?page=${page}&order_by=latest&username=${username}`,
+        `https://api.unsplash.com/users/${username}/photos?page=${page}&per_page=12&order_by=latest&username=${username}`,
         {
           headers: {
             // Authorization: `Client-ID ${process.env.NEXT_PUBLIC_UNSPLASH}`,
@@ -58,24 +58,26 @@ const Gallery = (props: GalleryProps) => {
   return (
     <>
       {layout === GRID ? (
-        <div className={styles.gallery}>
+        <>
+          <div className={styles.gallery}>
+            {data?.map((photo, index) => {
+              const { urls, alt_description, id } = photo;
+              return (
+                <GridImage
+                  key={id}
+                  photo={photo}
+                  alt_description={alt_description}
+                  urls={urls}
+                  isLast={index === data.length - 1}
+                  openDetailedView={openDetailedView}
+                  fetchNextPage={fetchNextPage}
+                />
+              );
+            })}
+          </div>
           {isLoading && <p>Loading...</p>}
           {!!error && <p>Something went wrong...</p>}
-          {data?.map((photo, index) => {
-            const { urls, alt_description, id } = photo;
-            return (
-              <GridImage
-                key={id}
-                photo={photo}
-                alt_description={alt_description}
-                urls={urls}
-                isLast={index === data.length - 1}
-                openDetailedView={openDetailedView}
-                fetchNextPage={fetchNextPage}
-              />
-            );
-          })}
-        </div>
+        </>
       ) : (
         <PostList
           posts={data}

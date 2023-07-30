@@ -17,7 +17,7 @@ const LayoutSwitcher = () => {
   return (
     <>
       <div className={styles.tabs}>
-        {tabs.map((item) => (
+        {/* {tabs.map((item) => (
           <button
             key={item}
             className={item === layout ? styles.active : styles.tab}
@@ -25,7 +25,7 @@ const LayoutSwitcher = () => {
           >
             {item}
           </button>
-        ))}
+        ))} */}
       </div>
       <Gallery layout={layout} />
     </>

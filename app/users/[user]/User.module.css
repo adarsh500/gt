@@ -41,8 +41,8 @@
 
     @media only screen and (max-width: 1024px) {
       .profileImageContainer {
-        height: 100px;
-        width: 100px;
+        height: 64px;
+        width: 64px;
         flex-shrink: 0;
       }
     }
@@ -95,12 +95,20 @@
           gap: 2px;
         }
 
-        .socials {
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-start;
-          gap: 0.5rem;
-          align-items: center;
+        @media only screen and (max-width: 1024px) {
+          .metaInfo .icon {
+            width: 18px;
+            height: 18px;
+          }
+        }
+      }
+
+      @media only screen and (max-width: 1024px) {
+        .meta {
+          margin-top: 0.75rem;
+          font-size: 14px;
+          line-height: 20px;
+          gap: 1rem;
         }
       }
 
@@ -127,18 +135,27 @@
 
       @media only screen and (max-width: 1024px) {
         .statistics {
-          margin-top: 1rem;
+          margin-top: 0.75rem;
           display: flex;
           align-items: center;
-          gap: 0.5rem;
+          gap: 1rem;
+          font-size: 14px;
+          line-height: 20px;
         }
       }
     }
 
     @media only screen and (max-width: 1024px) {
       .profileInfo {
-        margin-left: 1rem;
+        margin-left: 0;
+        margin-top: 1rem;
       }
+    }
+  }
+
+  @media only screen and (max-width: 1024px) {
+    .profileContainer {
+      flex-direction: column;
     }
   }
 
