@@ -1,8 +1,7 @@
 'use client';
-import React from 'react';
-import styles from './Navbar.module.css';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import styles from './Navbar.module.css';
 
 const routes = [
   {
@@ -26,7 +25,7 @@ const Navbar = () => {
         <div className={styles.links}>
           {routes.map(({ name, path }) => (
             <Link
-              href="/"
+              href={path}
               className={`${styles.link} ${
                 path === pathname ? styles.active : ''
               }`}
@@ -36,6 +35,7 @@ const Navbar = () => {
             </Link>
           ))}
         </div>
+        {/* <DarkModeSwitcher /> */}
       </div>
     </nav>
   );

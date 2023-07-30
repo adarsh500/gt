@@ -16,10 +16,10 @@
 .postContainer {
   font-size: 16px;
   line-height: 24px;
-  color: #000;
+  color: var(--text-light-primary);
   margin: 2rem 0;
   padding-bottom: 2rem;
-  border-bottom: 1px solid #eee;
+  border-bottom: var(--border-light);
 
   .statistics {
     margin-top: 0.75rem;
@@ -68,7 +68,7 @@
   }
 
   .profileContainer {
-    padding: 0.5rem 0;
+    padding: 0.65rem 0;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -84,6 +84,7 @@
       position: relative;
       width: 40px;
       height: 40px;
+      flex-shrink: 0;
 
       .profileImage {
         border-radius: 100%;
@@ -114,6 +115,13 @@
   }
 }
 
+@media (prefers-color-scheme: dark) {
+  .postContainer {
+    color: var(--text-dark-primary);
+    border-bottom: var(--border-dark);
+  }
+}
+
 .icon {
   height: 22px;
   width: 22px;
@@ -123,6 +131,12 @@
 
 .icon:hover {
   background-color: #eee;
+}
+
+@media (prefers-color-scheme: dark) {
+  .icon:hover {
+    background-color: #333;
+  }
 }
 
 .actions {
@@ -138,6 +152,13 @@
   }
 }
 
+@media (prefers-color-scheme: dark) {
+  .actions {
+    background-color: var(--bg-dark);
+    color: ;
+  }
+}
+
 .link {
   padding: 4px 10px;
   transition: all 0.2s ease-in-out;
@@ -150,6 +171,12 @@
   background-color: #eee;
 }
 
+@media (prefers-color-scheme: dark) {
+  .link:hover {
+    background-color: #333;
+  }
+}
+
 .status {
   color: #16a34a;
   background-color: #bbf7d0;
@@ -157,4 +184,15 @@
   line-height: 20px;
   padding: 1px 8px;
   border-radius: 20px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .actionIcon {
+    fill: var(--text-dark-primary);
+  }
+
+  .share {
+    fill: var(--text-dark-primary) !important;
+    color: var(--text-dark-primary) !important;
+  }
 }

@@ -49,6 +49,10 @@ svg {
   --border-radius-small: 4px;
   --border-light: 1px solid #eee;
   --border-dark: 1px solid #333;
+  --bg-light: #fff;
+  --bg-dark: #000;
+  --text-dark-primary: #fff;
+  --text-light-primary: #000;
 }
 
 @keyframes blur {

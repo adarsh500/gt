@@ -4,7 +4,13 @@
   justify-content: space-between;
   align-items: center;
   min-height: 100vh;
-  background-color: white;
+  background-color: var(--bg-light);
+}
+
+@media (prefers-color-scheme: dark) {
+  .main {
+    background-color: var(--bg-dark);
+  }
 }
 
 @media only screen and (max-width: 1024px) {

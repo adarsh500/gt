@@ -82,11 +82,9 @@ const Post = (props: {
         </Link>
         <div className={styles.profile}>
           <div className={styles.profileInfo}>
-            {/* <Popover content={<h1>hello there</h1>}> */}
             <Link href={profileLink} className={styles.username}>
               {user.username}
             </Link>
-            {/* </Popover> */}
             {user.for_hire ? <p className={styles.status}>for hire</p> : null}
           </div>
           <Popover
@@ -128,7 +126,9 @@ const Post = (props: {
       </div>
       <div className={styles.statistics}>
         <div className={styles.actionIcons}>
-          <span onClick={likePhoto}>{liked ? <HeartFilled /> : <Heart />}</span>
+          <span onClick={likePhoto}>
+            {liked ? <HeartFilled /> : <Heart className={styles.actionIcon} />}
+          </span>
           <Share className={styles.share} />
         </div>
         <div className={styles.statisticsCount}>

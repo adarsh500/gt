@@ -4,7 +4,7 @@ import Post from '../Post';
 const PostList = (props: any) => {
   const { posts, className, fetchNextPage } = props;
   return (
-    <div className={className ? className : styles.postsContainer}>
+    <div className={!!className ? className : styles.postsContainer}>
       {posts?.map((post, index) => {
         const {
           urls,
