@@ -12,7 +12,6 @@ const iconMap = {
   [GRID]: <Squares className={styles.icon} />,
   [LIST]: <List className={styles.icon} />,
 };
-//todo: refactor button styles
 
 const LayoutSwitcher = () => {
   const [layout, setLayout] = useState<Layout>(GRID);

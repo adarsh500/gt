@@ -7,9 +7,6 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import styles from './User.module.css';
 
-//todo
-//1. add hover state to location and socials
-//3. add tags
 
 const fetchUserDetails = async (username: string) => {
   const response = await fetch(`https://api.unsplash.com/users/${username}`, {
@@ -106,7 +103,7 @@ export default Profile;
 export async function generateMetadata({
   params,
   searchParams,
-}): Promise<Metadata> {
+}: any): Promise<Metadata> {
   const username = params.user.toUpperCase();
 
   return {
