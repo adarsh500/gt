@@ -1,5 +1,5 @@
 .navbar {
-  background: #fff;
+  background: var(--bg-light);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,7 +18,7 @@
 
 @media (prefers-color-scheme: dark) {
   .navbar {
-    background: #000;
+    background: var(--bg-dark);
     border-bottom: var(--border-dark);
     color: var(--text-dark-primary);
   }
@@ -48,7 +48,7 @@
 }
 
 .active {
-  color: var(--text-light-primary));
+  color: var(--text-light-primary);
 }
 
 @media (prefers-color-scheme: dark) {

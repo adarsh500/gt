@@ -22,3 +22,9 @@
   background-color: #eee;
   padding: 4px 10px;
 }
+
+@media (prefers-color-scheme: dark) {
+  .link:hover {
+    background-color: #333;
+  }
+}

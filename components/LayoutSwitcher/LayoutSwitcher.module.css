@@ -2,7 +2,7 @@
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  border-top: 1px solid #eee;
+  border-top: var(--border-light);
   padding: 1rem;
 
   .tab {
@@ -35,7 +35,7 @@
     color: #000;
     padding: 6px 16px;
     transition: all 0.2s ease-in-out;
-    background-color: #eee;
+    background-color: var(--accent-light);
     font-size: 14px;
     line-height: 22px;
     font-weight: 500;
@@ -48,6 +48,12 @@
     gap: 0.25rem;
   }
 
+  @media (prefers-color-scheme: dark) {
+    .active {
+      color: var(--text-dark-primary);
+      background-color: var(--accent-dark);
+    }
+  }
   @media only screen and (max-width: 1024px) {
     .active {
       padding: 4px 12px;
@@ -67,6 +73,12 @@
       width: 18px;
       height: 18px;
     }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .tabs {
+    border-top: var(--border-dark);
   }
 }
 

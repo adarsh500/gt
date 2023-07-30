@@ -1,7 +1,9 @@
 'use client';
+import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styles from './Navbar.module.css';
+import { useState, useEffect } from 'react';
 
 const routes = [
   {
@@ -17,6 +19,17 @@ const routes = [
 const Navbar = () => {
   const pathname = usePathname();
   console.log(pathname);
+  const [mounted, setMounted] = useState(false);
+
+  const { theme, setTheme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <nav className={styles.navbar}>
@@ -35,7 +48,9 @@ const Navbar = () => {
             </Link>
           ))}
         </div>
-        {/* <DarkModeSwitcher /> */}
+        The current theme is: {theme}
+        <button onClick={() => setTheme('light')}>Light Mode</button>
+        <button onClick={() => setTheme('dark')}>Dark Mode</button>
       </div>
     </nav>
   );

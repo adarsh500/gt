@@ -130,12 +130,12 @@
 }
 
 .icon:hover {
-  background-color: #eee;
+  background-color: var(--accent-light);
 }
 
 @media (prefers-color-scheme: dark) {
   .icon:hover {
-    background-color: #333;
+    background-color: var(--accent-dark);
   }
 }
 
@@ -155,7 +155,6 @@
 @media (prefers-color-scheme: dark) {
   .actions {
     background-color: var(--bg-dark);
-    color: ;
   }
 }
 
@@ -168,12 +167,12 @@
 
 .link:hover {
   border-radius: var(--border-radius-small);
-  background-color: #eee;
+  background-color: var(--accent-light);
 }
 
 @media (prefers-color-scheme: dark) {
   .link:hover {
-    background-color: #333;
+    background-color: var(--accent-dark);
   }
 }
 

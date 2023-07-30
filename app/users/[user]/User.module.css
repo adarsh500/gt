@@ -19,8 +19,15 @@
   align-items: center;
   min-height: 100vh;
   padding: 2rem 5rem;
-  background-color: white;
-  color: black;
+  background-color: var(--bg-light);
+  color: var(--text-light-primary);
+}
+
+@media (prefers-color-scheme: dark) {
+  .layout {
+    background-color: var(--bg-dark);
+    color: var(--text-dark-primary);
+  }
 }
 
 @media only screen and (max-width: 1024px) {
@@ -46,7 +53,7 @@
       height: 150px;
       width: 150px;
       border-radius: 100%;
-      border: 1px solid #eee;
+      border: var(--border-light);
 
       .profileImage {
         object-fit: cover;
