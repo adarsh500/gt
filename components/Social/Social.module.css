@@ -19,12 +19,12 @@
 
 .link:hover {
   border-radius: 4px;
-  background-color: #eee;
+  background-color: var(--accent-light);
   padding: 4px 10px;
 }
 
 @media (prefers-color-scheme: dark) {
   .link:hover {
-    background-color: #333;
+    background-color: var(--accent-dark);
   }
 }
