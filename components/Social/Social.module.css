@@ -5,6 +5,13 @@
   gap: 0.25rem;
 }
 
+@media only screen and (max-width: 1024px) {
+  .social {
+    padding: 0.25rem;
+    gap: 0.25rem;
+  }
+}
+
 .link {
   padding: 4px 10px;
   transition: all 0.2s ease-in-out;
@@ -14,4 +21,10 @@
   border-radius: 4px;
   background-color: #eee;
   padding: 4px 10px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .link:hover {
+    background-color: #333;
+  }
 }

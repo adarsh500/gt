@@ -10,7 +10,7 @@
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   scroll-behavior: smooth;
 }
 
@@ -46,8 +46,29 @@ svg {
 :root {
   --border-radius-large: 8px;
   --border-radius-medium: 6px;
+  --border-radius-small: 4px;
   --border-light: 1px solid #eee;
   --border-dark: 1px solid #333;
+  --bg-light: #fff;
+  --bg-dark: #000;
+  --text-dark-primary: #fff;
+  --text-light-primary: #000;
+  --accent-dark: #333;
+  --accent-light: #eee;
+}
+
+[data-theme='dark'] {
+  --border-radius-large: 8px;
+  --border-radius-medium: 6px;
+  --border-radius-small: 4px;
+  --border-light: 1px solid #333;
+  --border-dark: 1px solid #eee;
+  --bg-light: #000;
+  --bg-dark: #fff;
+  --text-dark-primary: #000;
+  --text-light-primary: #fff;
+  --accent-dark: #eee;
+  --accent-light: #333;
 }
 
 @keyframes blur {

@@ -1,17 +1,18 @@
 'use client';
-
-import Image from 'next/image';
-import styles from './Post.module.css';
+import Ellipsis from '@/assets/icons/Ellipsis';
 import Heart from '@/assets/icons/Heart';
-import Link from 'next/link';
+import HeartFilled from '@/assets/icons/HeartFilled';
 import Share from '@/assets/icons/Share';
-import { memo } from 'react';
 import millify from 'millify';
+import Image from 'next/image';
+import Link from 'next/link';
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
+import useNextBlurhash from 'use-next-blurhash';
 import Popover from '../Popover';
+import styles from './Post.module.css';
 
 // TODO
 // 1. add social media links
-// 2. add for hire badge
 // 3. add profile hover state
 // 4. add timestamp
 // 5. user liked state
@@ -28,23 +29,47 @@ const Post = (props: {
   likes: any;
   liked_by_user: any;
   user: any;
+  isLast: boolean;
+  fetchNextPage: () => void;
 }) => {
   const {
     urls,
     description,
     alt_description,
     blur_hash,
-    id,
     links,
     likes,
     liked_by_user,
     user,
+    isLast,
+    fetchNextPage,
   } = props;
+
+  const [blurDataUrl] = useNextBlurhash(blur_hash);
+  const cardRef = useRef(null);
+  const [liked, setLiked] = useState<boolean>(liked_by_user);
+
+  const likePhoto = useCallback(() => {
+    setLiked((prev) => !prev);
+  }, []);
+
+  useEffect(() => {
+    if (!cardRef?.current) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (isLast && entry.isIntersecting) {
+        fetchNextPage();
+        observer.unobserve(entry.target);
+      }
+    });
+
+    observer.observe(cardRef.current);
+  }, [fetchNextPage, isLast]);
 
   const profileLink = `/users/${user.username}`;
 
   return (
-    <div className={styles.postContainer}>
+    <div className={styles.postContainer} ref={cardRef}>
       <div className={styles.profileContainer}>
         <Link href={profileLink} className={styles.profileImageContainer}>
           <Image
@@ -55,19 +80,44 @@ const Post = (props: {
             alt={user.name}
           />
         </Link>
-        <div className={styles.profileInfo}>
-          <Popover content={<h1>hello there</h1>}>
+        <div className={styles.profile}>
+          <div className={styles.profileInfo}>
             <Link href={profileLink} className={styles.username}>
               {user.username}
             </Link>
+            {user.for_hire ? <p className={styles.status}>for hire</p> : null}
+          </div>
+          <Popover
+            content={
+              <div className={styles.actions}>
+                <Link
+                  href={links.html}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.link}
+                >
+                  Unsplash
+                </Link>
+                <Link
+                  href={urls.raw}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.link}
+                >
+                  View Full
+                </Link>
+              </div>
+            }
+          >
+            <Ellipsis className={styles.icon} />
           </Popover>
         </div>
       </div>
-      <div className={styles.imageContainer}>
+      <div className={styles.imageContainer} onDoubleClick={likePhoto}>
         <Image
           className={styles.image}
           placeholder="blur"
-          blurDataURL={blur_hash}
+          blurDataURL={blurDataUrl}
           src={urls.regular}
           alt={alt_description}
           fill
@@ -76,7 +126,9 @@ const Post = (props: {
       </div>
       <div className={styles.statistics}>
         <div className={styles.actionIcons}>
-          <Heart />
+          <span onClick={likePhoto}>
+            {liked ? <HeartFilled /> : <Heart className={styles.actionIcon} />}
+          </span>
           <Share className={styles.share} />
         </div>
         <div className={styles.statisticsCount}>

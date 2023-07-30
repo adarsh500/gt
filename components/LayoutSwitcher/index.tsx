@@ -1,11 +1,18 @@
 'use client';
+import List from '@/assets/icons/List';
+import Squares from '@/assets/icons/Squares';
 import { GRID, LIST } from '@/utils/constants';
-import React, { useCallback, useState } from 'react';
-import styles from './LayoutSwitcher.module.css';
+import { useCallback, useState } from 'react';
 import Gallery from '../Gallery';
+import styles from './LayoutSwitcher.module.css';
 
 type Layout = 'grid' | 'list';
 const tabs = [GRID, LIST];
+const iconMap = {
+  [GRID]: <Squares className={styles.icon} />,
+  [LIST]: <List className={styles.icon} />,
+};
+//todo: refactor button styles
 
 const LayoutSwitcher = () => {
   const [layout, setLayout] = useState<Layout>(GRID);
@@ -23,6 +30,7 @@ const LayoutSwitcher = () => {
             className={item === layout ? styles.active : styles.tab}
             onClick={() => switchLayout(item as Layout)}
           >
+            {iconMap[item]}
             {item}
           </button>
         ))}

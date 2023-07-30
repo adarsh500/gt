@@ -1,19 +1,26 @@
-import { customFetch } from '@utils/customFetch';
+import { customFetch } from '@/utils/customFetch';
 import { useEffect, useState } from 'react';
 
-export const useFetch = (options) => {
-  const [data, setData] = useState<unknown>(null);
+export const useInifiteFetch = (options) => {
+  const { enabled } = options;
+  const [data, setData] = useState<unknown>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<unknown>(null);
 
   useEffect(() => {
-    if (!options.enabled) return;
+ 
 
     const fetchData = async () => {
       setIsLoading(true);
       try {
         const result = await customFetch(options);
-        setData(result);
+        if (!result.length) {
+          return;
+        } else {
+          setData((prev) => {
+            return prev?.length ? [...prev, ...result] : result;
+          });
+        }
       } catch (err) {
         setError(err);
       } finally {
@@ -22,7 +29,7 @@ export const useFetch = (options) => {
     };
 
     fetchData();
-  }, [options.enabled]);
+  }, [options]);
 
   return { data, error, isLoading };
 };

@@ -4,5 +4,25 @@
   justify-content: space-between;
   align-items: center;
   min-height: 100vh;
-  background-color: white;
+  background-color: var(--bg-light);
+}
+
+@media (prefers-color-scheme: dark) {
+  .main {
+    background-color: var(--bg-dark);
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .main {
+    width: 100%;
+    padding: 1rem;
+  }
+}
+.container {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
 }

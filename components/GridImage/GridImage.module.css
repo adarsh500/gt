@@ -1,0 +1,61 @@
+@keyframes blur {
+  0% {
+    filter: blur(10px);
+    -moz-filter: blur(10px);
+    -o-filter: blur(10px);
+    -ms-filter: blur(10px);
+  }
+  100% {
+    filter: blur(0px);
+    -moz-filter: blur(0px);
+    -o-filter: blur(0px);
+    -ms-filter: blur(0px);
+  }
+}
+
+.imageContainer {
+  position: relative;
+  overflow: hidden;
+  width: calc(calc(100% - 32px) / 3);
+  aspect-ratio: 1;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+@media only screen and (max-width: 1024px) {
+  .imageContainer {
+    width: calc(calc(100% - 16px) / 3);
+    border-radius: 6px;
+  }
+}
+.overlay {
+  position: absolute;
+  flex: 1;
+  height: 100%;
+  width: 100%;
+  color: white;
+  opacity: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #00000050;
+  transition: all 0.2s ease-in-out;
+
+  .likes {
+    fill: white;
+    z-index: 10;
+  }
+}
+
+.imageContainer:hover {
+  .overlay {
+    opacity: 1;
+  }
+}
+
+.image {
+  object-fit: cover;
+  animation: blur 1s ease-in-out;
+}

@@ -1,23 +1,30 @@
-import React from 'react';
-import Image from 'next/image';
-import styles from './User.module.css';
-import { data } from '@/user';
-import millify from 'millify';
 import Location from '@/assets/icons/Location';
-import Social from '@/components/Social';
-import Gallery from '@/components/Gallery';
-import { userPhotos } from '@/photos';
 import Verified from '@/assets/icons/Verified';
 import LayoutSwitcher from '@/components/LayoutSwitcher';
+import Social from '@/components/Social';
+import millify from 'millify';
+import { Metadata } from 'next';
+import Image from 'next/image';
+import styles from './User.module.css';
 
 //todo
 //1. add hover state to location and socials
-//2. add verified badge
 //3. add tags
 
-const Profile = (props: any) => {
+const fetchUserDetails = async (username: string) => {
+  const response = await fetch(`https://api.unsplash.com/users/${username}`, {
+    headers: {
+      Authorization: `Client-ID ${process.env.NEXT_PUBLIC_ACCESS_KEY}`,
+    },
+  });
+  return await response.json();
+};
+
+const Profile = async (props: any) => {
   const { params } = props;
   const { user } = params;
+
+  const data = await fetchUserDetails(user);
   const {
     first_name,
     last_name,
@@ -36,6 +43,8 @@ const Profile = (props: any) => {
     downloads,
   } = data;
 
+  console.log(badge);
+
   return (
     <main className={styles.main}>
       <div className={styles.profileContainer}>
@@ -51,7 +60,7 @@ const Profile = (props: any) => {
         <div className={styles.profileInfo}>
           <b className={styles.name}>
             {first_name} {last_name ? last_name : ''}
-            <Verified className={styles.icon} />
+            {!!badge ? <Verified className={styles.icon} /> : null}
           </b>
 
           <p className={styles.bio}>{bio}</p>
@@ -69,15 +78,19 @@ const Profile = (props: any) => {
             </p>
           </div>
           <div className={styles.meta}>
-            <p className={styles.metaInfo}>
-              <Location className={styles.icon} />
-              {location}
-            </p>
-            <Social
-              instagram={instagram_username}
-              twitter={twitter_username}
-              portfolio={portfolio_url}
-            />
+            {!!location ? (
+              <p className={styles.metaInfo}>
+                <Location className={styles.icon} />
+                {location}
+              </p>
+            ) : null}
+            {!!instagram_username || !!twitter_username || !!portfolio_url ? (
+              <Social
+                instagram={instagram_username}
+                twitter={twitter_username}
+                portfolio={portfolio_url}
+              />
+            ) : null}
           </div>
         </div>
       </div>
@@ -90,7 +103,14 @@ const Profile = (props: any) => {
 
 export default Profile;
 
-export const metadata = {
-  title: `Profile`,
-  description: 'Profile',
-};
+export async function generateMetadata({
+  params,
+  searchParams,
+}): Promise<Metadata> {
+  const username = params.user.toUpperCase();
+
+  return {
+    title: username || 'Profile',
+    description: username || 'Profile',
+  };
+}

@@ -25,9 +25,9 @@ const Popover = ({ content, children }) => {
       onClick={handleClick}
     >
       {children}
-      {isPopoverVisible && (
-        <div className={styles.popoverContent}>{content}</div>
-      )}
+      {/* {isPopoverVisible && ( */}
+      <div className={isPopoverVisible? styles.popoverContent: styles.hidden}>{content}</div>
+      {/* )} */}
     </div>
   );
 };

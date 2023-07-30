@@ -1,3 +1,17 @@
+@keyframes blur {
+  0% {
+    filter: blur(10px);
+    -moz-filter: blur(10px);
+    -o-filter: blur(10px);
+    -ms-filter: blur(10px);
+  }
+  100% {
+    filter: blur(0px);
+    -moz-filter: blur(0px);
+    -o-filter: blur(0px);
+    -ms-filter: blur(0px);
+  }
+}
 .layout {
   display: flex;
   flex-direction: column;
@@ -5,8 +19,22 @@
   align-items: center;
   min-height: 100vh;
   padding: 2rem 5rem;
-  background-color: white;
-  color: black;
+  background-color: var(--bg-light);
+  color: var(--text-light-primary);
+}
+
+@media (prefers-color-scheme: dark) {
+  .layout {
+    background-color: var(--bg-dark);
+    color: var(--text-dark-primary);
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .layout {
+    width: 100%;
+    padding: 0;
+  }
 }
 
 .main {
@@ -25,10 +53,19 @@
       height: 150px;
       width: 150px;
       border-radius: 100%;
-      border: 1px solid #eee;
+      border: var(--border-light);
 
       .profileImage {
         object-fit: cover;
+        animation: blur 1s ease-in-out;
+      }
+    }
+
+    @media only screen and (max-width: 1024px) {
+      .profileImageContainer {
+        height: 64px;
+        width: 64px;
+        flex-shrink: 0;
       }
     }
 
@@ -48,6 +85,22 @@
           width: 18px;
           height: 18px;
         }
+
+        @media only screen and (max-width: 1024px) {
+          .icon {
+            width: 16px;
+            height: 16px;
+          }
+        }
+      }
+
+      @media only screen and (max-width: 1024px) {
+        .name {
+          font-size: 18px;
+          line-height: 26px;
+          font-weight: 600;
+          gap: 0.25rem;
+        }
       }
 
       .meta {
@@ -64,12 +117,20 @@
           gap: 2px;
         }
 
-        .socials {
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-start;
-          gap: 0.5rem;
-          align-items: center;
+        @media only screen and (max-width: 1024px) {
+          .metaInfo .icon {
+            width: 18px;
+            height: 18px;
+          }
+        }
+      }
+
+      @media only screen and (max-width: 1024px) {
+        .meta {
+          margin-top: 0.75rem;
+          font-size: 14px;
+          line-height: 20px;
+          gap: 1rem;
         }
       }
 
@@ -79,19 +140,65 @@
         line-height: 24px;
       }
 
+      @media only screen and (max-width: 1024px) {
+        .bio {
+          margin-top: 0.5rem;
+          font-size: 14px;
+          line-height: 20px;
+        }
+      }
+
       .statistics {
         margin-top: 1rem;
         display: flex;
         align-items: center;
         gap: 1rem;
       }
+
+      @media only screen and (max-width: 1024px) {
+        .statistics {
+          margin-top: 0.75rem;
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          font-size: 14px;
+          line-height: 20px;
+        }
+      }
+    }
+
+    @media only screen and (max-width: 1024px) {
+      .profileInfo {
+        margin-left: 0;
+        margin-top: 1rem;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 1024px) {
+    .profileContainer {
+      flex-direction: column;
+      padding: 2rem 0;
     }
   }
 
   .photos {
-    margin: 1rem;
-    /* border-top: 1px solid #eee; */
-    /* padding-top: 2rem; */
+    margin: 1rem auto;
+  }
+
+  @media only screen and (max-width: 1024px) {
+    .photos {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+    }
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .main {
+    width: 100%;
+    padding: 1rem;
   }
 }
 

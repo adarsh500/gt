@@ -1,12 +1,11 @@
-import React from 'react';
 import styles from './PostList.module.css';
 import Post from '../Post';
 
-const PostList = (props) => {
-  const { posts, className } = props;
+const PostList = (props: any) => {
+  const { posts, className, fetchNextPage } = props;
   return (
-    <div className={className ? className : styles.postsContainer}>
-      {posts?.map((post) => {
+    <div className={!!className ? className : styles.postsContainer}>
+      {posts?.map((post, index) => {
         const {
           urls,
           description,
@@ -30,6 +29,8 @@ const PostList = (props) => {
             likes={likes}
             liked_by_user={liked_by_user}
             user={user}
+            isLast={index === posts.length - 1}
+            fetchNextPage={fetchNextPage}
           />
         );
       })}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Heart = ({ className }) => {
+const Heart = ({ className ='' }) => {
   return (
     <span>
       <svg

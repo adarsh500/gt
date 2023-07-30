@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Share = ({ className }: any) => {
+const Share = ({ className = '' }) => {
   return (
     <svg
       className={className}
