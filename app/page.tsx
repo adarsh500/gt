@@ -10,8 +10,6 @@ TODO
 4. loaidng, error states
 5. responsive
 6. hyperlinks
-7. handle rate limiting
-8. add vitualisation
  */
 
 export default function Home() {
@@ -58,3 +56,4 @@ export default function Home() {
     </main>
   );
 }
+

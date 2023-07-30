@@ -5,8 +5,8 @@
 
 .popoverContent {
   position: absolute;
-  top: 110%;
-  left: 90%;
+  top: 100%;
+  left: 50%;
   transform: translateX(-50%);
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -14,9 +14,14 @@
   border-radius: 4px;
   z-index: 1;
   display: none;
+  border: 1px solid #eee;
 }
 
 .popoverContainer:hover .popoverContent,
 .popoverContainer.clicked .popoverContent {
   display: block;
+}
+
+.hidden {
+  display: none;
 }

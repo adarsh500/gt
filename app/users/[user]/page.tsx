@@ -3,6 +3,7 @@ import Verified from '@/assets/icons/Verified';
 import LayoutSwitcher from '@/components/LayoutSwitcher';
 import Social from '@/components/Social';
 import millify from 'millify';
+import { Metadata, ResolvingMetadata } from 'next';
 import Image from 'next/image';
 import styles from './User.module.css';
 
@@ -102,7 +103,14 @@ const Profile = async (props: any) => {
 
 export default Profile;
 
-export const metadata = {
-  title: `Profile`,
-  description: 'Profile',
-};
+export async function generateMetadata({
+  params,
+  searchParams,
+}): Promise<Metadata> {
+  const username = params.user.toUpperCase();
+
+  return {
+    title: username || 'Profile',
+    description: username || 'Profile',
+  };
+}

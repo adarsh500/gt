@@ -46,6 +46,7 @@ svg {
 :root {
   --border-radius-large: 8px;
   --border-radius-medium: 6px;
+  --border-radius-small: 4px;
   --border-light: 1px solid #eee;
   --border-dark: 1px solid #333;
 }

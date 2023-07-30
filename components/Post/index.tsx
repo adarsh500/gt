@@ -7,6 +7,8 @@ import Link from 'next/link';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import styles from './Post.module.css';
 import HeartFilled from '@/assets/icons/HeartFilled';
+import Ellipsis from '@/assets/icons/Ellipsis';
+import Popover from '../Popover';
 
 // TODO
 // 1. add social media links
@@ -76,12 +78,17 @@ const Post = (props: {
             alt={user.name}
           />
         </Link>
-        <div className={styles.profileInfo}>
-          {/* <Popover content={<h1>hello there</h1>}> */}
-          <Link href={profileLink} className={styles.username}>
-            {user.username}
-          </Link>
-          {/* </Popover> */}
+        <div className={styles.profile}>
+          <div className={styles.profileInfo}>
+            <Popover content={<h1>hello there</h1>}>
+              <Link href={profileLink} className={styles.username}>
+                {user.username}
+              </Link>
+            </Popover>
+          </div>
+          <Popover content={<div className={styles.actions}></div>}>
+            <Ellipsis className={styles.icon} />
+          </Popover>
         </div>
       </div>
       <div className={styles.imageContainer} onDoubleClick={likePhoto}>
