@@ -1,0 +1,37 @@
+.tabs {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 3rem;
+
+  .tab {
+    padding: 8px 20px;
+    transition: all 0.2s ease-in-out;
+    background-color: transparent;
+    color: #8b8b8b;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+    cursor: pointer;
+    border-top-left-radius: var(--border-radius-medium);
+    border-top-right-radius: var(--border-radius-medium);
+    border: none;
+    text-transform: capitalize;
+  }
+
+  .active {
+    color: #000;
+    padding: 8px 20px;
+    transition: all 0.2s ease-in-out;
+    background-color: #eee;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+    cursor: pointer;
+    border-top-left-radius: var(--border-radius-medium);
+    border-top-right-radius: var(--border-radius-medium);
+    border: none;
+    text-transform: capitalize;
+  }
+}

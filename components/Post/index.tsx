@@ -1,6 +1,22 @@
+'use client';
+
 import Image from 'next/image';
 import styles from './Post.module.css';
 import Heart from '@/assets/icons/Heart';
+import Link from 'next/link';
+import Share from '@/assets/icons/Share';
+import { memo } from 'react';
+import millify from 'millify';
+import Popover from '../Popover';
+
+// TODO
+// 1. add social media links
+// 2. add for hire badge
+// 3. add profile hover state
+// 4. add timestamp
+// 5. user liked state
+// 6. share on socials modal
+// 7. PAID SPONSOR https://www.instagram.com/reel/Ct7XOWiRyUQ/?utm_source=ig_embed&ig_rid=2e197fed-490a-4541-afd8-b32e331cb28a
 
 const Post = (props: {
   urls: any;
@@ -24,10 +40,13 @@ const Post = (props: {
     liked_by_user,
     user,
   } = props;
+
+  const profileLink = `/users/${user.username}`;
+
   return (
     <div className={styles.postContainer}>
       <div className={styles.profileContainer}>
-        <div className={styles.profileImageContainer}>
+        <Link href={profileLink} className={styles.profileImageContainer}>
           <Image
             src={user.profile_image.medium}
             fill
@@ -35,9 +54,13 @@ const Post = (props: {
             className={styles.profileImage}
             alt={user.name}
           />
-        </div>
+        </Link>
         <div className={styles.profileInfo}>
-          <b className={styles.profileUsername}>{user.username}</b>
+          <Popover content={<h1>hello there</h1>}>
+            <Link href={profileLink} className={styles.username}>
+              {user.username}
+            </Link>
+          </Popover>
         </div>
       </div>
       <div className={styles.imageContainer}>
@@ -54,16 +77,22 @@ const Post = (props: {
       <div className={styles.statistics}>
         <div className={styles.actionIcons}>
           <Heart />
+          <Share className={styles.share} />
         </div>
         <div className={styles.statisticsCount}>
-          <span className={styles.statisticsItemNumber}>{likes}</span>{' '}
-          <span className={styles.statisticsItemLabel}>Likes</span>
+          <span className={styles.statisticsItemNumber}>{millify(likes)}</span>{' '}
+          <span className={styles.statisticsItemLabel}>
+            {likes > 1 ? 'likes' : 'like'}
+          </span>
         </div>
       </div>
       <div className={styles.captionContainer}>
         {description && (
           <p className={styles.caption}>
-            <b>{user.username}</b> {description}
+            <Link href={profileLink} className={styles.username}>
+              {user.username}
+            </Link>{' '}
+            {description}
           </p>
         )}
       </div>
@@ -71,4 +100,4 @@ const Post = (props: {
   );
 };
 
-export default Post;
+export default memo(Post);
