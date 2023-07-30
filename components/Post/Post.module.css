@@ -1,3 +1,18 @@
+@keyframes blur {
+  0% {
+    filter: blur(10px);
+    -moz-filter: blur(10px);
+    -o-filter: blur(10px);
+    -ms-filter: blur(10px);
+  }
+  100% {
+    filter: blur(0px);
+    -moz-filter: blur(0px);
+    -o-filter: blur(0px);
+    -ms-filter: blur(0px);
+  }
+}
+
 .postContainer {
   font-size: 16px;
   line-height: 24px;
@@ -32,6 +47,7 @@
 
   .image {
     object-fit: cover;
+    animation: blur 1s ease-in-out;
   }
 
   .captionContainer {
@@ -72,6 +88,7 @@
       .profileImage {
         border-radius: 100%;
         object-fit: contain;
+        animation: blur 1s ease-in-out;
       }
     }
 

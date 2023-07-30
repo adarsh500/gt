@@ -85,6 +85,7 @@ const Post = (props: {
                 {user.username}
               </Link>
             </Popover>
+            <p>for hire</p>
           </div>
           <Popover content={<div className={styles.actions}></div>}>
             <Ellipsis className={styles.icon} />
