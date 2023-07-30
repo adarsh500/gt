@@ -1,4 +1,6 @@
-import React from 'react';
+
+'use client'
+//remove client
 import styles from './PostList.module.css';
 import Post from '../Post';
 

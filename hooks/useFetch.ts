@@ -1,4 +1,4 @@
-import { customFetch } from '@utils/customFetch';
+import { customFetch } from '@/utils/customFetch';
 import { useEffect, useState } from 'react';
 
 export const useFetch = (options) => {

@@ -8,7 +8,6 @@ type DropdownProps = {
 
 const Dropdown = (props: DropdownProps) => {
   const { trigger, children } = props;
-  console.log(props);
   const [open, setOpen] = useState(false);
 
   const handleOpen = useCallback(() => {

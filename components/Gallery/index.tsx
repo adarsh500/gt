@@ -19,9 +19,7 @@ type GalleryProps = {
 const Gallery = (props: GalleryProps) => {
   const { layout } = props;
 
-    const openDetailedView = useCallback(() => {
-      
-  }, []);
+  const openDetailedView = useCallback(() => {}, []);
 
   return (
     <>

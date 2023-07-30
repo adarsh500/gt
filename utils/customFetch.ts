@@ -1,8 +1,10 @@
 export const customFetch = (params) => {
+  const { method, url, body, headers: customHeaders } = params;
+
   const headers = {
     'Content-Type': 'application/json',
-    Authorization: 'Client-ID ' + process.env.ACCESS_KEY,
-    ...params.headers,
+    Authorization: 'Client-ID ' + process.env.NEXT_PUBLIC_ACCESS_KEY,
+    ...customHeaders,
   };
 
   const requestOptions = {
@@ -10,16 +12,17 @@ export const customFetch = (params) => {
     headers,
   };
 
-  if (params.method === 'POST') {
+  if (method === 'POST') {
     try {
-      requestOptions.body = JSON.stringify(params.body);
+      requestOptions.body = JSON.stringify(body);
     } catch (err) {
       console.log('Unable to stringify request body', err);
     }
   }
 
-  return fetch(params.url, requestOptions)
+  return fetch(url, requestOptions)
     .then((response) => {
+      console.log('resg', response)
       if (!response.ok)
         throw { status: response.status, message: "Didn't get OK response" };
       return response.json();

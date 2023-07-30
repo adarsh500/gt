@@ -1,7 +1,8 @@
-import styles from './page.module.css';
-import data from '../data';
-import Post from '@/components/Post';
+'use client';
 import PostList from '@/components/PostList';
+import styles from './page.module.css';
+import { useFetch } from '@/hooks/useFetch';
+import { useState } from 'react';
 
 /**
 TODO
@@ -15,10 +16,25 @@ TODO
 8. add vitualisation
  */
 
+// const getPhotos = async () => {
+//   const res = await fetch('https://api.unsplash.com/photos');
+//   return res.json();
+// };
+
 export default function Home() {
+  const [page, setPage] = useState(1)
+  const { data, isLoading, error } = useFetch({
+    url: `https://api.unsplash.com/photos?page=${page}`,
+    method: 'GET',
+    enabled: true,
+  });
+
+  console.log('data', data, isLoading, error)
   return (
     <main className={styles.main}>
-      <PostList posts={data} />
+      {/* <Suspense fallback={<p>Loading...</p>}> */}
+        <PostList posts={data} />
+      {/* </Suspense> */}
     </main>
   );
 }
